@@ -53,3 +53,15 @@ hero.id{
   color: white;
 }
 
+.id {
+position: relative;
+  top: 2px;
+}
+
+.SubTitle {
+  font-family: "Times New Roman", sans-serif;
+}
+
+.badge {
+font-family: "Times New Roman", snas-serif;
+}
