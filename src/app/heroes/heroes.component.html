@@ -12,8 +12,17 @@
   <label for="new-hero">Hero name: </label>
   <input id="new-hero" #heroName />
 
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
+  <label for="alterEgo">Alter ego: </label>
+  <input id='alterEgo' #alterEgo />
+  </div>
+
+<div class="form-group">
+  <label for="power">Hero Power</label>
+  <select class="form-control" id="power" #power required>
+    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+  </select>
+
+  <button type="button" class="add-button" (click)="add(heroName.value, power.value, alterEgo.value); heroName.value=''">
     Add hero
   </button>
-  </div>
+</div>

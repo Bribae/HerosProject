@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { InMemoryDataService } from '../in-memory-data.service'
 
 
 @Component({
@@ -11,12 +11,17 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
 
-  constructor(private heroService: HeroService,) { }
+  constructor(private heroService: HeroService,
+  private InMemServ: InMemoryDataService) { }
 
-add(name: string): void {
+  powers = this.InMemServ.powers
+
+add(name: string, power: string, alterEgo: string): void {
     name = name.trim();
+    alterEgo = alterEgo.trim()
     if(!name) {return; }
-    this.heroService.addHero({ name } as Hero).subscribe
+    if(!alterEgo) {return; }
+    this.heroService.addHero({ name } as Hero,{ alterEgo } as Hero).subscribe
     (hero => {
       this.heroes.push(hero)
     })
@@ -29,12 +34,14 @@ delete(hero: Hero): void {
   this.heroes = this.heroes.filter(h => h !== hero);
 }
 
-  ngOnInit(): void {
-    this.getHeroes();
-  }
-
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
   }
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+
+
 }
