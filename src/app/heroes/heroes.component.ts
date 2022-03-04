@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 import { InMemoryDataService } from '../in-memory-data.service'
+import {Validator, Validators} from "@angular/forms";
 
 
 @Component({
@@ -16,12 +17,13 @@ export class HeroesComponent implements OnInit {
 
   powers = this.InMemServ.powers
 
+
 add(name: string, power: string, alterEgo: string): void {
     name = name.trim();
     alterEgo = alterEgo.trim()
     if(!name) {return; }
     if(!alterEgo) {return; }
-    this.heroService.addHero({ name } as Hero,{ alterEgo } as Hero).subscribe
+    this.heroService.addHero({ name, power, alterEgo}).subscribe
     (hero => {
       this.heroes.push(hero)
     })

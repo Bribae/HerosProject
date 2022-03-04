@@ -10,19 +10,21 @@
 </ul>
 <div>
   <label for="new-hero">Hero name: </label>
-  <input id="new-hero" #heroName />
+  <input class="form-control" id="new-hero" #heroName required />
+</div>
 
   <label for="alterEgo">Alter ego: </label>
-  <input id='alterEgo' #alterEgo />
-  </div>
+  <input id='alterEgo' required
+  #alterEgo />
+
 
 <div class="form-group">
   <label for="power">Hero Power</label>
-  <select class="form-control" id="power" #power required>
+  <select class="form-control" id="power" #power>
     <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
   </select>
 
-  <button type="button" class="add-button" (click)="add(heroName.value, power.value, alterEgo.value); heroName.value=''">
+  <button type="button" class="add-button" (click)="add(heroName.value, power.value, alterEgo.value);">
     Add hero
   </button>
 </div>
